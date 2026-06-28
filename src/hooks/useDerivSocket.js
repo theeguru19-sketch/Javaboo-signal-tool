@@ -30,8 +30,8 @@ export function useDerivSocket(symbol, isLive) {
           price,
           digit: lastDigit,
         };
-        setTicks(prev => [tick, ...prev].slice(0, 50));
-        setDigits(prev => [...prev, lastDigit].slice(-50));
+        setTicks(prev => [tick, ...prev].slice(0, 100));
+        setDigits(prev => [...prev, lastDigit].slice(-100));
       }
     };
     ws.onerror = () => setStatus('error');
@@ -48,5 +48,5 @@ export function useDerivSocket(symbol, isLive) {
     return () => disconnect();
   }, [isLive, symbol, connect, disconnect]);
 
-  return { ticks, digits, status, connect, disconnect };
+  return { ticks, digits, status };
 }
